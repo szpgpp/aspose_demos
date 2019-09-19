@@ -35,7 +35,8 @@ namespace wpf_aspose_cells
             #endregion
 
             #region //1.set the border for single cell style
-            if(false){
+            if (false)
+            {
                 var cell = sheet1.Cells[1, 1];
                 var style = cell.GetStyle();
                 cell.PutValue("szp");
@@ -63,7 +64,7 @@ namespace wpf_aspose_cells
             #endregion
 
             #region //3.set the border around the range.
-            if (true)
+            if (false)
             {
                 var range = sheet1.Cells.CreateRange(2, 2, 3, 3);
                 range.PutValue("1", true, true);
@@ -76,18 +77,19 @@ namespace wpf_aspose_cells
             #endregion
 
             #region //4.import from datatable.(sheet1.AutoFitColumns())
-            if (false)
+            if (true)
             {
                 var dt = new DataTable();
                 var c1 = dt.Columns.Add("ID");
-                var c2 =dt.Columns.Add("Name");
+                var c2 = dt.Columns.Add("Name");
                 var c3 = dt.Columns.Add("Address");
-                
-                dt.Rows.Add("1","szp","china first street1");
-                dt.Rows.Add("2", "szp", "great wall");
-                dt.Rows.Add("3", "szp", "zgc\\n  great wall");
 
-                sheet1.Cells.ImportData(dt,0,0,new Aspose.Cells.ImportTableOptions() { IsFieldNameShown=true, ConvertNumericData=true });
+                dt.Rows.Add("1", "szp", "china first street1");
+                dt.Rows.Add("2", "szp", "great wall");
+                dt.Rows.Add("3", "szp", "zgc\\ great wall");
+                dt.Rows.Add("3", "szp", "dlxc");
+
+                sheet1.Cells.ImportData(dt, 0, 0, new Aspose.Cells.ImportTableOptions() { IsFieldNameShown = true, ConvertNumericData = true, CheckMergedCells = true });
 
                 sheet1.AutoFitColumns();
                 sheet1.AutoFitRows();
@@ -105,8 +107,16 @@ namespace wpf_aspose_cells
             catch
             {
                 this.Title = String.Format("faild to Export to {0}!", path);
-            } 
+            }
             #endregion
+        }
+        private Aspose.Cells.Cell GetDown(Aspose.Cells.Worksheet sheet, Aspose.Cells.Cell cell)
+        {
+            var row = cell.Row;
+            var col = cell.Column;
+            Aspose.Cells.Cell c = null;
+            while ((c = sheet.Cells[++row, col]) == null) ;
+            return c;
         }
     }
 }
