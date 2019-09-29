@@ -90,7 +90,7 @@ namespace wpf_aspose_cells
                 dt.Rows.Add("3", "szp", "dlxc");
 
                 sheet1.Cells.ImportData(dt, 0, 0, new Aspose.Cells.ImportTableOptions() { IsFieldNameShown = true, ConvertNumericData = true, CheckMergedCells = true });
-
+                sheet1.IsGridlinesVisible = false;
                 sheet1.AutoFitColumns();
                 sheet1.AutoFitRows();
             }
