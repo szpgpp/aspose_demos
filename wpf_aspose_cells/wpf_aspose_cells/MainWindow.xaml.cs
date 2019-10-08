@@ -77,7 +77,7 @@ namespace wpf_aspose_cells
             #endregion
 
             #region //4.import from datatable.(sheet1.AutoFitColumns())
-            if (true)
+            if (false)
             {
                 var dt = new DataTable();
                 var c1 = dt.Columns.Add("ID");
@@ -97,12 +97,19 @@ namespace wpf_aspose_cells
 
             #endregion
 
+            //5.AddLine
+            {
+                sheet1.Shapes.AddLine(0, 5, 0, 5, 500, 500);
+                //sheet1.Shapes.AddShape(Aspose.Cells.Drawing.MsoDrawingType.Line, 1, 1, 1, 1, 500, 500);
+            }
+
             #region Save to file
             var path = @"d:\1.xlsx";
             try
             {
                 doc.Save(path, Aspose.Cells.SaveFormat.Xlsx);
                 this.Title = String.Format("Export to {0} successfully!", path);
+                System.Diagnostics.Process.Start(path);
             }
             catch
             {

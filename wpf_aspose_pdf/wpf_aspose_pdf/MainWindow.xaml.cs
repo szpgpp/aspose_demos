@@ -59,6 +59,8 @@ namespace wpf_aspose_pdf
             }
             // Add table object to first page of input document
             pdfPage.Paragraphs.Add(table);
+            //Aspose.Pdf.Layer layer1 = new Aspose.Pdf.Layer("layer1","layer1");
+            //pdfPage.Layers.Add(layer1); //why is pdfPage.layers null?
 
             //save
             try
